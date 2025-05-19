@@ -8,7 +8,7 @@ const oto = {
 };
 
 async function pureiGemu() {
-    const sentakushi = ["グー ✊", "パー ✋", "チョキ ✌️"];
+    const sentakushi = ["グー 🪨", "パー 📄", "チョキ ✂️"];
     let senshuSukoa = 0;
     let konpyuutaSukoa = 0;
     const gemuEremento = document.getElementById("gemu");
