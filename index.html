@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>じゃんけんゲーム</title>
+        <link href="styles.css" rel="stylesheet">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1 id="janken">じゃんけんゲーム</h1>
+        <div id="start-screen" style="height: 100vh; display: flex; justify-content: center; align-items: center; background: #111; color: #eee;">
+            <button id="start-button" style="font-size: 24px; padding: 1rem 2rem;">ゲームを始める</button>
+        </div>
+        <div id="yoki">
+            <pre id="gemu"></pre>
+            <div id="nyuryoku-eria">
+                <button class="sentakushi-botan" data-value="0">グー ✊</button>
+                <button class="sentakushi-botan" data-value="1">パー ✋</button>
+                <button class="sentakushi-botan" data-value="2">チョキ ✌️</button>
+            </div>
+        </div>
+    </body>
+</html>
