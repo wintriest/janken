@@ -7,37 +7,50 @@ const oto = {
     intoro: new Audio("音/イントロ.mp3")
 };
 
+Object.values(oto).forEach(audio => {
+    audio.load();
+});
+
+function playSound(audio) {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+}
+
+function matsu(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function pureiGemu() {
+    setupButtonListeners();
     const sentakushi = ["グー 🪨", "パー 📄", "チョキ ✂️"];
-    let senshuSukoa = 0;
-    let konpyuutaSukoa = 0;
+        let senshuSukoa = 0;
+        let konpyuutaSukoa = 0;
     const gemuEremento = document.getElementById("gemu");
-    const senshuSerekuto = document.querySelectorAll(".sentakushi-botan");
-    
-    function matsu(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
     async function printLine(text, delay = 400) {
-        oto.tekisuto.currentTime = 0;
-        oto.tekisuto.play();
+        playSound(oto.tekisuto);
         gemuEremento.textContent += text + "\n";
         gemuEremento.scrollTop = gemuEremento.scrollHeight;
         await matsu(delay);
     }
     
-    let inputResolve = null;
-    
-    senshuSerekuto.forEach(button => {
-        button.addEventListener("click", () => {
-            if (inputResolve) {
-                const val = Number(button.dataset.value);
-                inputResolve(val);
-                inputResolve = null;
-            }
+    function setupButtonListeners() {
+        const buttons = document.querySelectorAll(".sentakushi-botan");
+        buttons.forEach(button => {
+            button.replaceWith(button.cloneNode(true)); // Remove previous listeners
         });
-    });
-
+        document.querySelectorAll(".sentakushi-botan").forEach(button => {
+            button.addEventListener("click", () => {
+                if (inputResolve) {
+                    const val = Number(button.dataset.value);
+                    inputResolve(val);
+                    inputResolve = null;
+                }
+            });
+        });
+    }
+    
     function getPlayerInput() {
         return new Promise(resolve => {
             inputResolve = resolve;
@@ -68,26 +81,26 @@ async function pureiGemu() {
         ) {
             konpyuutaSukoa++;
             await matsu(800);
-                oto.machigai.play();
+                playSound(oto.machigai);
             await printLine("| +1 コンピュー 🤖 |", 400);
             await printLine("", 200);
             if (konpyuutaSukoa === 5) {
                 await matsu(500);
                 await printLine("| " + senshuSukoa + " - " + konpyuutaSukoa + " |", 400);
-                    oto.ushinau.play();
+                    playSound(oto.ushinau);
                 await printLine("コンピューターが勝った！ 🤖 ", 700);
                 break;
             }
         } else {
             senshuSukoa++;
             await matsu(800);
-                oto.yoi.play();
+                playSound(oto.yoi);
             await printLine("| +1 選手 👤 |", 400,);
             await printLine("", 200);
             if (senshuSukoa === 5) {
                 await matsu(500);
                 await printLine("| " + senshuSukoa + " - " + konpyuutaSukoa + " |", 400);
-                    oto.katsu.play();
+                    playSound(oto.katsu);
                 await printLine("選手が勝った！ 👤 ", 700);
                 break;
             }
@@ -95,11 +108,13 @@ async function pureiGemu() {
     await matsu(1000);
     }
 }
-window.onload = () => {
-    document.getElementById("start-button").addEventListener("click", async () => {
-        document.getElementById("start-screen").style.display = "none";
-        oto.intoro.currentTime = 0;
-        oto.intoro.play();
+window.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.getElementById("sutato-botan");
+
+    startButton.addEventListener("click", async () => {
+        document.getElementById("sutato-gamen").style.display = "none";
+        playSound(oto.intoro);
         await pureiGemu();
     });
-};
+});
+
