@@ -12,7 +12,7 @@
 
 - 🪨📄✂️ 直感的なターン制バトル  
 - ASCIIスタイルのUI & アニメーション  
-- Tetris効果音    
+- Tetris[効果音](https://www.zophar.net/music/gameboy-gbs/tetris-dx)
 - 日本語対応 & 美しい端末体験
 
 ---
