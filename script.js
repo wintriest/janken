@@ -7,7 +7,7 @@ const oto = {
     katsu: new Audio("音/勝つ.mp3")
 };
 
-Object. values(oto).forEach(otoOnsei => {
+Object.values(oto).forEach(otoOnsei => {
     otoOnsei.load();
 });
 
