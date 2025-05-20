@@ -66,12 +66,12 @@ async function pureiGemu() {
         await insatsuGyou("| " + senshuSukoa + " - " + konpyuutaSukoa + " |");
             const senshuSentaku = await pureiyaaNyuuryoku();
             const konpyuutaSentaku = Math.floor(Math.random() * 3);
-        await insatsuGyou(" > 選手が選んだ：    " + sentakushi[senshuSentaku]);
-        await insatsuGyou(" > コンピュータ選んだ:  " + sentakushi[konpyuutaSentaku]);
+        await insatsuGyou(" > 選手が選んだ：    " + sentakushi[senshuSentaku], 350);
+        await insatsuGyou(" > コンピュータ選んだ:  " + sentakushi[konpyuutaSentaku], 350);
         
         if (senshuSentaku === konpyuutaSentaku) {
             await matsu(800);
-            await insatsuGyou("| あいこ! 🤝 |");
+            await insatsuGyou("| あいこ! 🤝 |", 400);
             await insatsuGyou("");
         } else if (
             (senshuSentaku === 0 && konpyuutaSentaku === 1) ||
@@ -81,26 +81,26 @@ async function pureiGemu() {
             konpyuutaSukoa++;
             await matsu(800);
                 saiseiSuru(oto.machigai);
-            await insatsuGyou("| +1 コンピュー 🤖 |");
+            await insatsuGyou("| +1 コンピュー 🤖 |", 500);
             await insatsuGyou("");
             if (konpyuutaSukoa === 5) {
-                await matsu(500);
+                await matsu(600);
                 await insatsuGyou("| " + senshuSukoa + " - " + konpyuutaSukoa + " |", 200);
                     saiseiSuru(oto.ushinau);
-                await insatsuGyou("コンピューターが勝った！ 🤖 ");
+                await insatsuGyou("コンピューターが勝った！ 🤖 ", 700);
                 break;
             }
         } else {
             senshuSukoa++;
             await matsu(800);
                 saiseiSuru(oto.yoi);
-            await insatsuGyou("| +1 選手 👤 |");
+            await insatsuGyou("| +1 選手 👤 |", 500);
             await insatsuGyou("");
             if (senshuSukoa === 5) {
-                await matsu(500);
+                await matsu(600);
                 await insatsuGyou("| " + senshuSukoa + " - " + konpyuutaSukoa + " |", 200);
                     saiseiSuru(oto.katsu);
-                await insatsuGyou("選手が勝った！ 👤 ");
+                await insatsuGyou("選手が勝った！ 👤 ", 700);
                 break;
             }
         }
